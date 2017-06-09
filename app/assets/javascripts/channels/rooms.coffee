@@ -22,13 +22,13 @@ jQuery(document).on 'turbolinks:load', ->
       send_message: (message, chat_room_id) ->
         @perform 'send_message', message: message, chat_room_id: chat_room_id
 
-    $('#new_message').submit (e) ->
+    $('body').on 'submit', '#new_message', (e) ->
+      e.preventDefault()
       $this = $(this)
       textarea = $this.find('#message_body')
       if $.trim(textarea.val()).length > 1
         App.global_chat.send_message textarea.val(), messages.data('chat-room-id')
         textarea.val('')
-      e.preventDefault()
       return false
 
 
