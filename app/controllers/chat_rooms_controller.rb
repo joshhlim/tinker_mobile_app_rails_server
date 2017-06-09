@@ -1,6 +1,17 @@
 class ChatRoomsController < ApplicationController
   def index
     @chat_rooms = ChatRoom.all
+    # client = Instagram.client(:access_token => session[:access_token])
+    #     response = client.user_recent_media
+    #     album = [].concat(response)
+    #     max_id = response.pagination.next_max_id
+
+    #     while !(max_id.to_s.empty?) do
+    #         response = client.user_recent_media(:max_id => max_id)
+    #         max_id = response.pagination.next_max_id
+    #         album.concat(response)
+    #     end
+    #     @album = album
   end
 
   def show
