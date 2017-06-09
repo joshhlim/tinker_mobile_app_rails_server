@@ -6,5 +6,5 @@ test:
 
 production:
   adapter: redis
-  url: redis://localhost:3000
+  url: <%= ENV["REDISCLOUD_URL"] %>
   channel_prefix: tinkr_production
