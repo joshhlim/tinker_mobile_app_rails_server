@@ -4,7 +4,6 @@ class UsersController < ApplicationController
   end
 
   def create
-    puts params.inspect
     create_action_failure and return unless params.has_key?(:user) && params[:user].present?
     @user = User.new(user_params)
     if @user.save
