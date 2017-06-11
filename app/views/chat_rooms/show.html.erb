@@ -6,10 +6,28 @@
 
 <%= form_for @message, url: '#' do |f| %>
   <div class="form-group">
-    <%= f.label :body %>
+    <%= f.label :body, "Comment here:" %>
     <%= f.text_area :body, class: 'form-control' %>
     <small class="text-muted">From 2 to 1000 characters</small>
   </div>
 
   <%= f.submit "Post", class: 'btn btn-primary btn-lg' %>
+<% end %>
+
+<br>
+<br>
+<% @client.user_recent_media.each do |media_item| %>
+  <div style='float:left;'>
+  <img src='<%= media_item.images.thumbnail.url %>'><br/>
+  <br>
+  <br>
+  </div>
+<% end %>
+
+<% @client.location_recent_media(514276).each do |media_item| %>
+  <div style='float:left;'>
+  <img src='<%= media_item.images.thumbnail.url %>'><br/>
+  <br>
+  <br>
+  </div>
 <% end %>

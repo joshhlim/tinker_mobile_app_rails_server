@@ -17,6 +17,9 @@ class ChatRoomsController < ApplicationController
   def show
     @chat_room = ChatRoom.includes(:messages).find_by(id: params[:id])
     @message = Message.new
+
+    @client = Instagram.client(:access_token => session[:access_token])
+    @user = @client.user
   end
 
   def new
