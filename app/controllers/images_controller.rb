@@ -6,9 +6,9 @@ class ImagesController < ApplicationController
 
     def create
     create_action_failure and return unless params.has_key?(:image) && params[:image].present?
-    @image = Image.new(image_params)
-    if @image.save
-      render json: @image.to_json
+    @images = Image.new(image_params)
+    if @images.save
+      render json: @images.to_json
     else
       create_action_failure
     end
@@ -21,7 +21,7 @@ class ImagesController < ApplicationController
 
   private
   def image_params
-    params.require(:image).permit(:image)
+    params.require(:image).permit(:image_url, :user_id)
   end
 
   def create_action_failure
