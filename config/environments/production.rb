@@ -93,4 +93,16 @@ Rails.application.configure do
                                                'https://glacial-refuge-57305.herokuapp.com/']
 
   config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
+
+
+  config.paperclip_defaults = {
+  :storage => :s3,
+  :s3_host_name => 'REMOVE_THIS_LINE_IF_UNNECESSARY',
+  s3_credentials: {
+    bucket: ENV.fetch('S3_BUCKET_NAME'),
+    access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+    secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+    s3_region: 'us-west-2',
+    }
+  }
 end

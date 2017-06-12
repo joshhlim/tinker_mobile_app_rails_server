@@ -4,6 +4,14 @@ Rails.application.routes.draw do
   devise_scope :user do
   get 'logout', to: 'devise/sessions#destroy'
 end
+  resources :users, only: [:show] do
+    resources :requests, only: [:new, :create, :show, :index]
+  end
+
+  resources :users, only: [:show] do
+    resources :profile_photo, only: [:new, :create, :show, :index]
+  end
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   resources :chat_rooms, only: [:new, :create, :show, :index]
