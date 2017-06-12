@@ -113,6 +113,12 @@ ActiveRecord::Schema.define(version: 20170612170929) do
     t.string "password_digest", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+<<<<<<< HEAD
+    t.string "username"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+=======
+>>>>>>> master
   end
 
   add_foreign_key "chat_rooms", "users"
