@@ -1,0 +1,16 @@
+<h3>
+  <%= t('users.profile.basic_settings') %>
+</h3>
+<%= simple_form_for @user, :url => profile_path, :html => { :method => :put } do |f| %>
+  <% #= f.error_messages %>
+  <%= f.input :name, :placeholder=>t('activerecord.placeholders.name') %>
+  <%= f.input :email, :placeholder=>t('activerecord.placeholders.email') %>
+  <%= f.submit t('users.profile.change_name'), :class => "btn btn-primary" %>
+  <%= t('users.profile.change_password') %>
+<% end %>
+<%= simple_form_for @user, :url => profile_path, :html => { :method => :put } do |f| %>
+  <% #= f.error_messages %>
+  <%= f.input :password , :error_html => { :id => "password_error"} %>
+  <%= f.input :password_confirmation %>
+  <%= f.submit t('users.profile.change_password'), :class => "btn btn-primary" %>
+<% end %>

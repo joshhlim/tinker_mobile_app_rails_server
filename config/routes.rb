@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
+  # , :path => 'u'
   devise_scope :user do
   get 'logout', to: 'devise/sessions#destroy'
 end
@@ -10,6 +11,8 @@ end
   mount ActionCable.server => '/cable'
 
   get 'callback/index'
+
+  resources :profile
 
   get "/privacy-policy" => "policy#index"
   get "/ig/callback" => "callback#index"

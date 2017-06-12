@@ -35,6 +35,7 @@ gem 'redis', '~> 3.2'
 gem 'jquery-rails'
 gem 'omniauth-instagram'
 gem 'instagram'
+gem 'simple_form'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
