@@ -11,10 +11,12 @@ class UsersController < ApplicationController
   end
 
   def create
+    puts params
     create_action_failure and return unless params.has_key?(:user) && params[:user].present?
-    @user = User.new(user_params)
-    if @user.save
-      render json: @user.to_json
+    user = User.new(user_params)
+    if user.save
+      login(user)
+      render json: user.to_json
     else
       create_action_failure
     end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :requests, only: [:new, :create, :show, :index]
   end
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :create] do
     resources :profile_photo, only: [:new, :create, :show, :index]
   end
 
