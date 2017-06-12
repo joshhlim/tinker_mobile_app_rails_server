@@ -1,12 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_secure_password
 
-  # attr_accessible :username, :login
-  # attr_accessor :login
-
-  devise :omniauthable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   # has_many :microposts, dependent: :destroy
@@ -16,13 +10,11 @@ class User < ApplicationRecord
   has_many :profile_photos
   has_many :requests
 
-  def name
-    email.split('@')[0]
-  end
+  validates :username, :presence => { message: 'username' }
+  validates :email, :presence => { message: 'email' },
+              :format => { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'email format' },
+              :uniqueness => { message: 'uniqueness?' }
+  validates :password, :confirmation => { message: 'password' },
+                         :length => { minimum: 4, message: 'password length must be over 4 characters' }
 
-  # def self.find_for_database_authentication warden_conditions
-  #   conditions = warden_conditions.dup
-  #   login = conditions.delete(:login)
-  #   where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
-  # end
 end
