@@ -1,14 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # , :path => 'u'
-  devise_scope :user do
-  get 'logout', to: 'devise/sessions#destroy'
-end
   resources :users, only: [:show] do
     resources :requests, only: [:new, :create, :show, :index]
   end
 
-  resources :users, only: [:show] do
+  resources :users, only: [:show, :create] do
     resources :profile_photo, only: [:new, :create, :show, :index]
   end
 
@@ -24,4 +19,9 @@ end
 
   get "/privacy-policy" => "policy#index"
   get "/ig/callback" => "callback#index"
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#create'
+  get '/logout' => 'sessions#destroy'
+
 end

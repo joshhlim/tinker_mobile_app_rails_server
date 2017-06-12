@@ -16,18 +16,13 @@
 
 <br>
 <br>
+<h1>Select from your IG!</h1>
 <% @client.user_recent_media.each do |media_item| %>
-  <div style='float:left;'>
+  <div class="ig-photos" style='float:left;'>
   <img src='<%= media_item.images.thumbnail.url %>'><br/>
   <br>
   <br>
   </div>
 <% end %>
 
-<% @client.location_recent_media(514276).each do |media_item| %>
-  <div style='float:left;'>
-  <img src='<%= media_item.images.thumbnail.url %>'><br/>
-  <br>
-  <br>
-  </div>
-<% end %>
+
