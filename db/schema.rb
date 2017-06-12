@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170609034051) do
+ActiveRecord::Schema.define(version: 20170612015706) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,69 @@ ActiveRecord::Schema.define(version: 20170609034051) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "microposts", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id", "created_at"], name: "index_microposts_on_user_id_and_created_at"
+    t.index ["user_id"], name: "index_microposts_on_user_id"
+  end
+
+  create_table "profile_photos", force: :cascade do |t|
+    t.string "url"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_profile_photos_on_user_id"
+  end
+
+  create_table "relationships", force: :cascade do |t|
+    t.integer "follower_id"
+    t.integer "followed_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "request_photos", force: :cascade do |t|
+    t.string "url"
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_request_photos_on_request_id"
+  end
+
+  create_table "request_tags", force: :cascade do |t|
+    t.string "name"
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_request_tags_on_request_id"
+  end
+
+  create_table "requests", force: :cascade do |t|
+    t.string "description"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_requests_on_user_id"
+  end
+
+  create_table "styles", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_styles", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "style_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["style_id"], name: "index_user_styles_on_style_id"
+    t.index ["user_id"], name: "index_user_styles_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -46,6 +109,9 @@ ActiveRecord::Schema.define(version: 20170609034051) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.string "bio"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
@@ -53,4 +119,11 @@ ActiveRecord::Schema.define(version: 20170609034051) do
   add_foreign_key "chat_rooms", "users"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "microposts", "users"
+  add_foreign_key "profile_photos", "users"
+  add_foreign_key "request_photos", "requests"
+  add_foreign_key "request_tags", "requests"
+  add_foreign_key "requests", "users"
+  add_foreign_key "user_styles", "styles"
+  add_foreign_key "user_styles", "users"
 end
