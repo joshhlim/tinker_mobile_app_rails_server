@@ -8,6 +8,6 @@
 
 <%#= render @album %>
 
-<%= link_to 'Instagram Login', Instagram.authorize_url(redirect_uri: "https://tinkrfashion.herokuapp.com/ig/callback", scope: "basic public_content follower_list") %>
+<%= link_to 'Instagram Login', Instagram.authorize_url(redirect_uri: "http://localhost:3000/ig/callback", scope: "basic public_content follower_list") %>
 
-<!-- redirect_uri: "http://localhost:3000/ig/callback" -->
+<!-- redirect_uri: "https://tinkrfashion.herokuapp.com/ig/callback" -->

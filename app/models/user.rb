@@ -16,13 +16,13 @@ class User < ApplicationRecord
   has_many :profile_photos
   has_many :requests
 
-  # def name
-  #   email.split('@')[0]
-  # end
-
-  def self.find_for_database_authentication warden_conditions
-    conditions = warden_conditions.dup
-    login = conditions.delete(:login)
-    where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
+  def name
+    email.split('@')[0]
   end
+
+  # def self.find_for_database_authentication warden_conditions
+  #   conditions = warden_conditions.dup
+  #   login = conditions.delete(:login)
+  #   where(conditions).where(["lower(username) = :value OR lower(email) = :value", {value: login.strip.downcase}]).first
+  # end
 end

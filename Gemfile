@@ -36,6 +36,7 @@ gem 'jquery-rails'
 gem 'omniauth-instagram'
 gem 'instagram'
 gem 'simple_form'
+gem 'faker'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
