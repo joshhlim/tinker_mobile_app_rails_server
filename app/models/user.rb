@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :username, :presence => { message: 'username' }
   validates :email, :presence => { message: 'email' },
               :format => { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'email format' },
-              :uniqueness => { message: 'uniqueness?' }
+              :uniqueness => { message: 'email uniqueness' }
 
                           # :confirmation => { message: 'password' },
                          # :length => { minimum: 4, message: 'password length must be over 4 characters' }
