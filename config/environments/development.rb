@@ -57,4 +57,8 @@ Rails.application.configure do
 #   :s3_host_name => 'REMOVE_THIS_LINE_IF_UNNECESSARY',
 #   :bucket => 'S3_BUCKET_NAME'
 # }
+  Paperclip.options[:command_path] = "/usr/local/bin/"
+  Paperclip.options[:content_type_mappings] = {:image => "image/jpeg"}
+  # Paperclip.options[:content_type_mappings] =
+  # image/jpeg
 end
