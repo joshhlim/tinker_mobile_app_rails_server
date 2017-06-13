@@ -17,6 +17,8 @@ Rails.application.routes.draw do
 
   resources :profile
 
+  post 'authenticate', to: 'authentication#authenticate'
+
   get "/privacy-policy" => "policy#index"
   get "/ig/callback" => "callback#index"
 
