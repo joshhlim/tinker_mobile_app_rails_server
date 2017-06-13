@@ -8,6 +8,8 @@ class UsersController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @styles = User_styles.where(user:current_user)
   end
 
   def create

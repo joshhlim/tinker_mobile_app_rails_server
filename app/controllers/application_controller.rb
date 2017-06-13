@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-  # before_action :authenticate
+  # before_action :must_login
 
   private
     def login(user)
@@ -15,7 +15,11 @@ class ApplicationController < ActionController::Base
       !current_user.nil?
     end
 
-    def authenticate
+    def must_login
       redirect_to login_url, alert: 'You must login to access that page' unless logged_in?
+    end
+
+    def create_action_failure
+      head 422
     end
 end
