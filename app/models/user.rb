@@ -2,9 +2,9 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :user_requests
-  has_many :advice_requests, through: :user_requests, class_name: "Request"
+  has_many :advice_requests, through: :user_requests, source: :request
   has_many :requests
-  # belongs_to :request, as: :advisor
+  belongs_to :request
 
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy

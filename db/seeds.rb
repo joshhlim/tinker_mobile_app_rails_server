@@ -29,3 +29,6 @@ Style.create(name: "50's")
 Style.create(name: "90's")
 Style.create(name: "20's")
 Style.create(name: "60's")
+
+
+User.create()

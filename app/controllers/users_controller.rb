@@ -14,6 +14,18 @@ class UsersController < ApplicationController
     # @styles = UserStyle.where(user:current_user)
   end
 
+  def notifications
+    @advice_requests = current_user.advice_requests
+  end
+
+  def requests
+    @requests = current_user.requests
+  end
+
+  def browse
+
+  end
+
   def create
     puts params
     create_action_failure and return unless params.has_key?(:user) && params[:user].present?
