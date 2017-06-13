@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  skip_before_action :authenticate_request, only: [:create]
   # skip_before_action :verify_authenticity_token, only: [:create]
   skip_before_action :authenticate_request, only: [:create]
   def index
@@ -9,9 +10,6 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts params
-    puts "/n/n/n"
-    @user = current_user
     render json: current_user.to_json
     # @styles = UserStyle.where(user:current_user)
   end
