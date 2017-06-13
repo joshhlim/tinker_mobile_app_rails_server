@@ -19,7 +19,7 @@ class ProfilePhotosController < ApplicationController
 
 private
   def profile_photo_params
-      params.require(:profile_photo).permit(:url, :user_id)
+      params.require(:profile_photo).permit!
   end
 
   def create_action_failure

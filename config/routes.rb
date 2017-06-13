@@ -22,8 +22,8 @@ Rails.application.routes.draw do
   get "/privacy-policy" => "policy#index"
   get "/ig/callback" => "callback#index"
 
-  get '/login' => 'sessions#new'
-  post '/login' => 'sessions#create'
-  get '/logout' => 'sessions#destroy'
+  # get '/login' => 'sessions#new'
+  # post '/login' => 'sessions#create'
+  # get '/logout' => 'sessions#destroy'
 
 end
