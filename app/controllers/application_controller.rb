@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
       session[:user_id] = user.id
     end
 
-    def current_user
-       @current_user ||= User.find(session[:user_id]) if session[:user_id]
-    end
+    # def current_user
+    #    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    # end
 
     def logged_in?
       !current_user.nil?
@@ -26,6 +26,8 @@ class ApplicationController < ActionController::Base
     end
 
     def authenticate_request
+      puts "headers['Authorization'] => #{request.headers['Authorization']}"
+      puts "headers['Accept'] => #{request.headers['Accept']}"
       @current_user = AuthorizeApiRequest.call(request.headers).result
       render json: { error: 'Not Authorized' }, status: 401 unless @current_user
     end

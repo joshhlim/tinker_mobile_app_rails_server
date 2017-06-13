@@ -9,8 +9,10 @@ class UsersController < ApplicationController
 
   def show
     puts params
-    puts "/n/n/n"
+    puts "/n/n/n users"
     @user = current_user
+    p @user
+    render json: @user.to_json
     # @styles = UserStyle.where(user:current_user)
   end
 

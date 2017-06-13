@@ -15,8 +15,6 @@ class AuthenticateUser
   attr_accessor :username, :password
 
   def user
-    puts "user aint workin"
-    puts username.downcase
     user = User.find_by_username(username.downcase)
     return user if user && user.authenticate(password)
 
