@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :user_requests
   has_many :advice_requests, through: :user_requests, class_name: "Request"
   has_many :requests
-  belongs_to :request, as: :advisor
+  # belongs_to :request, as: :advisor
 
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
