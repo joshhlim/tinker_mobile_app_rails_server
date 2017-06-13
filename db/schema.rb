@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170612170929) do
+ActiveRecord::Schema.define(version: 20170612233819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20170612170929) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_chat_rooms_on_user_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "request_id"
+    t.text "body"
+    t.bigint "request_photo_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_comments_on_request_id"
+    t.index ["request_photo_id"], name: "index_comments_on_request_photo_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "messages", force: :cascade do |t|
@@ -98,6 +110,15 @@ ActiveRecord::Schema.define(version: 20170612170929) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_requests", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "request_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["request_id"], name: "index_user_requests_on_request_id"
+    t.index ["user_id"], name: "index_user_requests_on_user_id"
+  end
+
   create_table "user_styles", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "style_id"
@@ -116,6 +137,9 @@ ActiveRecord::Schema.define(version: 20170612170929) do
   end
 
   add_foreign_key "chat_rooms", "users"
+  add_foreign_key "comments", "request_photos"
+  add_foreign_key "comments", "requests"
+  add_foreign_key "comments", "users"
   add_foreign_key "messages", "chat_rooms"
   add_foreign_key "messages", "users"
   add_foreign_key "microposts", "users"
@@ -123,6 +147,8 @@ ActiveRecord::Schema.define(version: 20170612170929) do
   add_foreign_key "request_photos", "requests"
   add_foreign_key "request_tags", "requests"
   add_foreign_key "requests", "users"
+  add_foreign_key "user_requests", "requests"
+  add_foreign_key "user_requests", "users"
   add_foreign_key "user_styles", "styles"
   add_foreign_key "user_styles", "users"
 end

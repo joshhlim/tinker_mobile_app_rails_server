@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
     end
 
     def must_login
-      redirect_to login_url, alert: 'You must login to access that page' unless logged_in?
+      redirect_to '/login', alert: 'You must login to access that page' unless logged_in?
     end
 
     def create_action_failure
