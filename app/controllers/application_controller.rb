@@ -5,12 +5,12 @@ class ApplicationController < ActionController::Base
   attr_reader :current_user
 
   private
-    def login(user)
-      session[:user_id] = user.id
-    end
+    # def login(user)
+    #   session[:user_id] = user.id
+    # end
 
     def current_user
-       @current_user ||= User.find(session[:user_id]) if session[:user_id]
+       @current_user = AuthorizeApiRequest.call(request.headers).result
     end
 
     def logged_in?

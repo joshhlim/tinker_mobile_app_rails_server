@@ -18,5 +18,10 @@ class UserRequestsController < ApplicationController
     end
   end
 
+  private
+  def comment_params
+      #params.require(:request).permit(:description, :user_id)
+      params.require(:comment).permit!
+  end
 
 end

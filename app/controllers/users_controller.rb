@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   # skip_before_action :verify_authenticity_token, only: [:create]
+  skip_before_action :authenticate_request, only: [:create]
   def index
   end
 
@@ -11,27 +12,30 @@ class UsersController < ApplicationController
     puts params
     puts "/n/n/n"
     @user = current_user
+    render json: current_user.to_json
     # @styles = UserStyle.where(user:current_user)
   end
 
-  def notifications
-    @advice_requests = current_user.advice_requests
-  end
+  # def notifications
+  #   @advice_requests = current_user.advice_requests
+  # end
 
-  def requests
-    @requests = current_user.requests
-  end
+  # def requests
+  #   @requests = current_user.requests(includes: :request_photos)
+  # end
 
-  def browse
+  # def browse
 
-  end
+  # end
 
   def create
+
     puts params
     create_action_failure and return unless params.has_key?(:user) && params[:user].present?
     user = User.new(user_params)
     if user.save
-      login(user)
+      current_user
+      puts current_user
       render json: user.to_json
     else
       create_action_failure
