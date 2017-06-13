@@ -8,8 +8,19 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
     @styles = User_styles.where(user:current_user)
+  end
+
+  def notifications
+    @advice_requests = current_user.advice_requests
+  end
+
+  def requests
+    @requests = current_user.requests
+  end
+
+  def browse
+
   end
 
   def create
