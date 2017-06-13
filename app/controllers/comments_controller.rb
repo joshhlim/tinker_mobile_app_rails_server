@@ -1,5 +1,5 @@
 class UserRequestsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  # skip_before_action :verify_authenticity_token, only: [:create]
   def index
   end
 
@@ -7,6 +7,7 @@ class UserRequestsController < ApplicationController
   end
 
   def create
+    puts params
     request = params[:request]
     request_photo = params[:request_photo]
     body = params[:body]

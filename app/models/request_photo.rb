@@ -15,4 +15,5 @@ class RequestPhoto < ApplicationRecord
   end
   belongs_to :request
   has_one :user, through: :request
+  has_many :comments
 end

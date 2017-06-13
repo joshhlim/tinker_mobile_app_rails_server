@@ -17,7 +17,7 @@ class RequestsController < ApplicationController
   def create
     create_action_failure and return unless params.has_key?(:request) && params[:request].present?
     @request = Request.new(request_params)
-    # @request.user = current_user
+    @request.user = current_user
     #@request.request_photos.build(request_photos_params)
     @request_photo = RequestPhoto.new(request_photo_params)
     @request.request_photos << @request_photo

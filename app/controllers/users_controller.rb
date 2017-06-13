@@ -9,20 +9,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    puts params
-    puts "/n/n/n"
-    @user = current_user
-    render json: current_user.to_json
+    render json: current_user.to_json(include:
+      [
+        { profile_photos: { methods: :image, only: [:id] } }
+      ])
     # @styles = UserStyle.where(user:current_user)
   end
-
-  # def notifications
-  #   @advice_requests = current_user.advice_requests
-  # end
-
-  # def requests
-  #   @requests = current_user.requests(includes: :request_photos)
-  # end
 
   # def browse
 
@@ -34,8 +26,7 @@ class UsersController < ApplicationController
     create_action_failure and return unless params.has_key?(:user) && params[:user].present?
     user = User.new(user_params)
     if user.save
-      current_user
-      puts current_user
+      # render json: current_user.to_json
       render json: user.to_json
     else
       create_action_failure

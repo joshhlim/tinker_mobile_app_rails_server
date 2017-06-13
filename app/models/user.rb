@@ -5,14 +5,16 @@ class User < ApplicationRecord
   has_many :advice_requests, through: :user_requests, source: :request
   has_many :requests
   belongs_to :request
+  has_many :user_styles
+  has_many :styles, through: :user_styles
+  has_many :profile_photos
+  has_many :comments
+
 
   has_many :chat_rooms, dependent: :destroy
   has_many :messages, dependent: :destroy
   # has_many :microposts, dependent: :destroy
   # has_many :active_relationships
-  has_many :user_styles
-  has_many :styles, through: :user_styles
-  has_many :profile_photos
 
   validates :username, :presence => { message: 'username' }
   validates :email, :presence => { message: 'email' },

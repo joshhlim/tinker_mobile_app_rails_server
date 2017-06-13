@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :requests, only: [:new, :create, :show, :index]
+    resources :user_requests, only: [:index, :show, :create, :new]
   end
 
   resources :users, only: [:show, :create] do

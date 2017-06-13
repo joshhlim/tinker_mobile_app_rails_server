@@ -1,6 +1,11 @@
 class UserRequestsController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  # skip_before_action :verify_authenticity_token, only: [:create]
   def index
+    render json: current_user.advice_requests.to_json(include:
+      [
+        { request_photos: { methods: :image, only: [:id] } },
+        { advisors: { only: :username } }
+      ])
   end
 
   def show
