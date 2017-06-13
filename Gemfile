@@ -39,6 +39,8 @@ gem 'omniauth-instagram'
 gem 'instagram'
 gem 'simple_form'
 gem 'faker'
+gem 'jwt'
+gem 'simple_command'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development

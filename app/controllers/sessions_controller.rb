@@ -1,13 +1,16 @@
 class SessionsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: [:create]
+
   def new
+    @user = User.new
   end
 
   def create
-    user = User.find_by(username: params[:username])
-    if user && user.authenticate(params[:password])
+    user = User.find_by(username: params[:user][:username])
+    if user && user.authenticate(params[:user][:password])
       login(user)
-      redirect_to '/'
+      render json: user.to_json
+      # redirect_to '/'
     else
       redirect_to '/login'
     end

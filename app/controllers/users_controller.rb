@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  skip_before_action :verify_authenticity_token, only: [:create]
+  # skip_before_action :verify_authenticity_token, only: [:create]
   def index
   end
 
@@ -8,7 +8,10 @@ class UsersController < ApplicationController
   end
 
   def show
-    @styles = User_styles.where(user:current_user)
+    puts params
+    puts "/n/n/n"
+    @user = current_user
+    # @styles = UserStyle.where(user:current_user)
   end
 
   def notifications
