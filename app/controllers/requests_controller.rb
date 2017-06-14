@@ -1,6 +1,4 @@
 class RequestsController < ApplicationController
-
-  # skip_before_action :verify_authenticity_token, only: [:create]
   def index
     render json: current_user.requests.to_json(include:
       [
@@ -10,7 +8,6 @@ class RequestsController < ApplicationController
   end
 
   def new
-    # @user = User.find()
     @request = Request.new
   end
 

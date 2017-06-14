@@ -1,6 +1,5 @@
 class ApplicationController < ActionController::Base
   # protect_from_forgery with: :exception
-  # before_action :must_login
   before_action :authenticate_request
   attr_reader :current_user
 
