@@ -1,10 +1,10 @@
 class UsersController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create]
+  skip_before_action :authenticate_request, only: [:new, :create]
   # skip_before_action :verify_authenticity_token, only: [:create]
-  # skip_before_action :authenticate_request, only: [:create]
+
   def index
-    users = User.all
-    render json: user.to_json(include: [{request: Request.last}])
+    user = User.all
+    render json: user.to_json(include: [:request])
   end
 
   def new
@@ -24,13 +24,16 @@ class UsersController < ApplicationController
   # end
 
   def create
-
     puts params
     create_action_failure and return unless params.has_key?(:user) && params[:user].present?
     user = User.new(user_params)
     if user.save
-      # render json: current_user.to_json
-      render json: user.to_json
+      command = AuthenticateUser.call(params[:user][:username], params[:user][:password])
+      if command.success?
+        render json: { user: user, auth_token: command.result }.to_json
+      else
+        render json: { error: command.errors }, status: :unauthorized
+      end
     else
       create_action_failure
     end

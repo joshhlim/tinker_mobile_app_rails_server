@@ -4,7 +4,6 @@ class User < ApplicationRecord
   has_many :user_requests
   has_many :advice_requests, through: :user_requests, source: :request
   has_many :requests
-  belongs_to :request
   has_many :user_styles
   has_many :styles, through: :user_styles
   has_many :profile_photos

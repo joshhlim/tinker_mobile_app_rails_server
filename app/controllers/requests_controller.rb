@@ -14,6 +14,20 @@ class RequestsController < ApplicationController
     @request = Request.new
   end
 
+  def show
+    request = Request.find(params[:id])
+    users = User.all - request.advisors - [current_user]
+    # friends = current_user.friends - request.advisors
+    # experts = current_user.followed_experts
+    request_as_json = request.as_json(include:
+      [
+        { request_photos: { methods: :image, only: [:id] } },
+        { advisors: { only: :username } }
+      ])
+    render json: { request: request_as_json, users: users.as_json(only: [:id, :username]) }.to_json
+
+  end
+
   def create
     create_action_failure and return unless params.has_key?(:request) && params[:request].present?
     @request = Request.new(request_params)

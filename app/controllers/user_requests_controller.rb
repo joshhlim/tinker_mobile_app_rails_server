@@ -8,10 +8,8 @@ class UserRequestsController < ApplicationController
       ])
   end
 
-  # def new
-  #   all_users = User.all
-  #   render json: all_users.to_json
-  # end
+  def new
+  end
 
   def show
   end
