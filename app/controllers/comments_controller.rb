@@ -1,27 +1,44 @@
-class UserRequestsController < ApplicationController
+class CommentsController < ApplicationController
   def index
+    request = Request.find(params[:request_id])
+    comments = request.comments
+    render json: comments.to_json
   end
 
   def show
   end
 
-  def create
-    puts params
-    request = params[:request]
-    request_photo = params[:request_photo]
-    body = params[:body]
-    comment = Comment.new(user: current_user, request: request, request_photo: request_photo, body: body)
-    if comment.save
-      render json: comment.to_json
-    else
-      create_action_failure
-    end
+  def new
+    comment = Comment.new
   end
+
+  def edit
+
+  end
+
+  def create
+    request = Request.find(params[:request_id])
+    comment = Comment.new(comment_params)
+    request.comments << comment
+    render_request_as_json(request)
+  end
+
+  def update
+  end
+
 
   private
   def comment_params
-      #params.require(:request).permit(:description, :user_id)
-      params.require(:comment).permit!
+      params.require(:comment).permit(:body, :user_id, :request_photo_id, :request_id)
   end
 
+  def render_request_as_json(request)
+    request_as_json = request.as_json(include:
+      [
+        { request_photos: { methods: :image, only: [:id] } },
+        { advisors: { only: [:username, :id] } },
+        { comments: { only: [:body, :user_id, :request_photo_id]}}
+      ])
+    render json: request_as_json.to_json
+  end
 end

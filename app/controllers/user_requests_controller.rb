@@ -37,5 +37,4 @@ class UserRequestsController < ApplicationController
   def user_request_params
     params.require(:user_request).permit(:user_id, :request_id)
   end
-
 end

@@ -9,12 +9,6 @@ class User < ApplicationRecord
   has_many :profile_photos
   has_many :comments
 
-
-  has_many :chat_rooms, dependent: :destroy
-  has_many :messages, dependent: :destroy
-  # has_many :microposts, dependent: :destroy
-  # has_many :active_relationships
-
   validates :username, :presence => { message: 'username' }
   validates :email, :presence => { message: 'email' },
               :format => { with: /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/ , message: 'email format' },
