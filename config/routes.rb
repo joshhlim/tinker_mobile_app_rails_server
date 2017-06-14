@@ -3,13 +3,14 @@ Rails.application.routes.draw do
     resources :requests, only: [:new, :create, :show, :index, :edit, :update] do
       resources :comments, only: [:new, :create, :show, :index, :edit, :update]
     end
+    resources :user_requests, only: [:index]
   end
 
   resources :users, only: [:show, :create] do
     resources :profile_photo, only: [:new, :create, :show, :index]
   end
 
-  get 'callback/index'
+
 
   post 'authenticate', to: 'authentication#authenticate'
 
