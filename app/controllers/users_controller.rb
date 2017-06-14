@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:new, :create]
   # skip_before_action :verify_authenticity_token, only: [:create]
+
   def index
     user = User.all
     render json: user.to_json(include: [:request])
