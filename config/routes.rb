@@ -6,8 +6,8 @@ Rails.application.routes.draw do
     resources :user_requests, only: [:index]
   end
 
-  resources :users, only: [:show, :create] do
-    resources :profile_photo, only: [:new, :create, :show, :index]
+  resources :users, only: [:show, :create, :new, :index] do
+    resources :profile_photos, only: [:new, :create, :show, :index]
   end
 
 

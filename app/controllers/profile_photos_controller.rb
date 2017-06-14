@@ -1,11 +1,12 @@
 class ProfilePhotosController < ApplicationController
   def index
+    render json: current_user.profile_photos.to_json
   end
 
   def create
     create_action_failure and return unless params.has_key?(:profile_photo) && params[:profile_photo].present?
     @profile_photo = Profile_photo.new(profile_photo_params)
-    @profile_photo.user = currrent_user
+    @profile_photo.user = current_user
 # start with instagram urls probably
     if @profile_photo.save
       render json: @profile_photo.to_json
