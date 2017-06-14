@@ -89,10 +89,10 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
 
-  config.action_cable.allowed_request_origins = ['https://glacial-refuge-57305.herokuapp.com/',
-                                               'https://glacial-refuge-57305.herokuapp.com/']
+  # config.action_cable.allowed_request_origins = ['https://glacial-refuge-57305.herokuapp.com/',
+  #                                              'https://glacial-refuge-57305.herokuapp.com/']
 
-  config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
+  # config.action_cable.url = "wss://sitepoint-actioncable.herokuapp.com/cable"
 
 
   config.paperclip_defaults = {

@@ -3,6 +3,12 @@ class ProfilePhotosController < ApplicationController
     render json: current_user.profile_photos.to_json
   end
 
+  def show
+  end
+
+  def new
+  end
+
   def create
     create_action_failure and return unless params.has_key?(:profile_photo) && params[:profile_photo].present?
     @profile_photo = Profile_photo.new(profile_photo_params)
@@ -13,6 +19,15 @@ class ProfilePhotosController < ApplicationController
     else
       create_action_failure
     end
+  end
+
+  def edit
+  end
+
+  def update
+  end
+
+  def delete
   end
 
 private
