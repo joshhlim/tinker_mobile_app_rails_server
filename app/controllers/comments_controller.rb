@@ -14,7 +14,9 @@ class CommentsController < ApplicationController
   end
 
   def new
+    request = Request.find(params[:request_id])
     comment = Comment.new
+    render_request_as_json(request)
   end
 
   def edit
