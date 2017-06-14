@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     resources :profile_photos, only: [:new, :create, :show, :index]
   end
 
-
+get '/requests/advise', to: 'user_requests#index'
 
   post 'authenticate', to: 'authentication#authenticate'
 
