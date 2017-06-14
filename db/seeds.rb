@@ -31,4 +31,12 @@ Style.create(name: "20's")
 Style.create(name: "60's")
 
 
-User.create()
+User.create(username: "erik", email: "e@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "matt", email: "m@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "josh", email: "j@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "nate", email: "n@gmail.com", password: "123123123", password_confirmation: "123123123")
+
+Request.create(description: "This is for a date", user_id: "1")
+Request.create(description: "school", user_id: "2")
+Request.create(description: "plz help", user_id: "3")
+Request.create(description: "hot or not?", user_id: "4")
