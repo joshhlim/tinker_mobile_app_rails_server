@@ -6,6 +6,11 @@ class CommentsController < ApplicationController
   end
 
   def show
+    comment = Comment.find(params[:id])
+    render json: comment.to_json(include:
+      [
+        { request_photo: { methods: :image, only: [:id] } }
+      ])
   end
 
   def new
