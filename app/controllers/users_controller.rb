@@ -3,7 +3,7 @@ class UsersController < ApplicationController
 
   def index
     user = User.all
-    render json: user.to_json(include: [:profile_photos])
+    render json: user.to_json(include: [profile_photos: { methods: :image, only: [:id] } ])
   end
 
   def new

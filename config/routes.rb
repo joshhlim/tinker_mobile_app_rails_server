@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :create, :new, :index] do
-    resources :profile_photos, only: [:new, :create, :show, :index]
+    resources :profile_photos
   end
 
 
