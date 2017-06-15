@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170614225710) do
+ActiveRecord::Schema.define(version: 20170615040932) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,11 +27,9 @@ ActiveRecord::Schema.define(version: 20170614225710) do
     t.bigint "user_id"
     t.bigint "request_id"
     t.text "body"
-    t.bigint "request_photo_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["request_id"], name: "index_comments_on_request_id"
-    t.index ["request_photo_id"], name: "index_comments_on_request_photo_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
@@ -149,7 +147,6 @@ ActiveRecord::Schema.define(version: 20170614225710) do
   end
 
   add_foreign_key "chat_rooms", "users"
-  add_foreign_key "comments", "request_photos"
   add_foreign_key "comments", "requests"
   add_foreign_key "comments", "users"
   add_foreign_key "messages", "chat_rooms"

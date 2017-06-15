@@ -27,6 +27,7 @@ class CommentsController < ApplicationController
     request = Request.find(params[:request_id])
     comment = Comment.new(comment_params)
     request.comments << comment
+
     render_request_as_json(request)
   end
 
