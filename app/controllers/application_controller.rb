@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 
   private
     def current_user
-       @current_user = AuthorizeApiRequest.call(request.headers).result
+      @current_user = AuthorizeApiRequest.call(request.headers).result
     end
 
     def logged_in?
