@@ -43,6 +43,7 @@ class CommentsController < ApplicationController
     request_as_json = request.as_json(include:
       [
         { request_photos: { methods: :image, only: [:id] } },
+        { user: {only: [:username]} },
         { advisors: { only: [:username, :id] } },
         { comments: { only: [:body, :user_id, :request_photo_id]}}
       ])
