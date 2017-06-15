@@ -1,7 +1,13 @@
 class RequestsController < ApplicationController
   def index
     requests = current_user.requests
-    render json: requests.to_json(include: [request_photos: { methods: :image, only: [:id] }])
+    render json: requests.to_json(include:
+      [
+        { request_photos: { methods: :image, only: [:id] } },
+        { user: {only: [:username]} }
+        # { advisors: { only: [:username, :id] } },
+        # { comments: { only: [:body, :user_id, :request_photo_id]}}
+      ])
   end
 
   def show

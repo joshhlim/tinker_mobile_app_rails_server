@@ -6,9 +6,7 @@ Rails.application.routes.draw do
     # resources :user_requests, only: [:index]
   end
 
-  resources :users, only: [:show, :create, :new, :index, :edit, :update] do
-    resources :profile_photos
-  end
+  resources :profile_photos
 
   get '/requests/advise', to: 'user_requests#index'
 

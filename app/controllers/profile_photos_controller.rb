@@ -1,6 +1,10 @@
 class ProfilePhotosController < ApplicationController
   def index
-    render json: current_user.profile_photos.to_json
+    photos = ProfilePhoto.all
+    render json: photos.to_json(include:
+      [
+        { profile_photos: { methods: :image, only: [:id] } }
+      ])
   end
 
   def show
