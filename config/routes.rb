@@ -10,7 +10,13 @@ Rails.application.routes.draw do
     resources :profile_photos
   end
 
+  resources :requests, only: [:show, :edit, :update, :delete]
+
+  post '/request_photo_upload', to: 'requests#photo_upload'
+
   get '/requests/advise', to: 'user_requests#index'
+
+  put '/requests', to: 'requests#update'
 
   post 'authenticate', to: 'authentication#authenticate'
 

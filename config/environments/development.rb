@@ -57,8 +57,18 @@ Rails.application.configure do
 #   :s3_host_name => 'REMOVE_THIS_LINE_IF_UNNECESSARY',
 #   :bucket => 'S3_BUCKET_NAME'
 # }
-  Paperclip.options[:command_path] = "/usr/local/bin/"
-  Paperclip.options[:content_type_mappings] = {:image => "image/jpeg"}
+  # Paperclip.options[:command_path] = "/usr/local/bin/"
+  # Paperclip.options[:content_type_mappings] = {:image => "image/jpeg"}
+  config.paperclip_defaults = {
+  :storage => :s3,
+  s3_host_name: "s3-us-west-1.amazonaws.com",
+  s3_credentials: {
+    bucket: ENV.fetch('S3_BUCKET_NAME'),
+    access_key_id: ENV.fetch('AWS_ACCESS_KEY_ID'),
+    secret_access_key: ENV.fetch('AWS_SECRET_ACCESS_KEY'),
+    s3_region: 'us-west-1',
+    }
+  }
   # Paperclip.options[:content_type_mappings] =
   # image/jpeg
 end

@@ -20,12 +20,25 @@ class RequestsController < ApplicationController
     render_request_as_json(request)
   end
 
+  def photo_upload
+    request = Request.find_by(id: params[:request_id], user: current_user) || Request.new(user: current_user)
+    request_photo = RequestPhoto.new(image: params[:photo])
+    request.request_photos << request_photo
+    request.save!
+    render json: request.to_json(include: :request_photos)
+  end
+
   def create
     create_action_failure and return unless params.has_key?(:request) && params[:request].present?
     @request = Request.new(request_params)
+    puts "\n\n\nrequest"
+    p @request
+
     @request.user = current_user
 
     @request_photo = RequestPhoto.new(request_photo_params)
+    puts "\n\n\nrequest photo"
+    p @request_photo
     @request.request_photos << @request_photo
 
     if @request.save
@@ -36,9 +49,17 @@ class RequestsController < ApplicationController
   end
 
   def update
-    request = Request.find(params[:id])
-    params[:user_request][:advisors].each do |advisor|
-      request.advisors << User.find(advisor)
+    request = Request.find(request_params[:id])
+    if request_params[:description]
+      request.description = request_params[:description]
+      request.save
+    elsif request_params[:advisors]
+      puts "this is obvious \n\n\n"
+      puts request_params.inspect
+      request_params[:advisors].each do |advisor|
+        new_advisor = User.find_by(advisor)
+        request.advisors << new_advisor if new_advisor
+      end
     end
     render_request_as_json(request)
   end
