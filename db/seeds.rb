@@ -46,13 +46,6 @@ User.create(username: "Jared", email: "jared@gmail.com", password: "123123123", 
 User.create(username: "Ryan", email: "r@gmail.com", password: "123123123", password_confirmation: "123123123")
 User.create(username: "Lisa", email: "lisa@gmail.com", password: "123123123", password_confirmation: "123123123")
 
-
-Request.create(description: "This is for a date", user_id: "1")
-Request.create(description: "school", user_id: "2")
-Request.create(description: "plz help", user_id: "3")
-Request.create(description: "hot or not?", user_id: "4")
-
-
 Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Erik"))
 Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Matt"))
 Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Josh"))
