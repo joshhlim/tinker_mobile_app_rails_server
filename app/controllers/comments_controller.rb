@@ -27,7 +27,6 @@ class CommentsController < ApplicationController
     request = Request.find(params[:request_id])
     comment = Comment.new(comment_params)
     request.comments << comment
-
     render_request_as_json(request)
   end
 
@@ -37,7 +36,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-      params.require(:comment).permit(:body, :user_id, :request_photo_id, :request_id)
+      params.require(:comment).permit(:body, :user_id, :request_id)
   end
 
   def render_request_as_json(request)
