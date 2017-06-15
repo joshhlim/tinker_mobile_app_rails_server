@@ -1,13 +1,17 @@
 class RequestsController < ApplicationController
   def index
     requests = current_user.requests
-    render json: requests.to_json(include: [request_photos: { methods: :image, only: [:id] }])
+    render json: requests.to_json(include:
+      [
+        { request_photos: { methods: :image, only: [:id] } },
+        { user: {only: [:username]} }
+        # { advisors: { only: [:username, :id] } },
+        # { comments: { only: [:body, :user_id, :request_photo_id]}}
+      ])
   end
 
   def show
     request = Request.find(params[:id])
-    # friends = current_user.friends - request.advisors
-    # experts = current_user.followed_experts
     render_request_as_json(request)
   end
 
@@ -79,12 +83,15 @@ private
 
   def render_request_as_json(request)
     users = User.all - request.advisors - [current_user]
+    friends = current_user.friends - request.advisors
+    experts = current_user.experts - request.advisors
     request_as_json = request.as_json(include:
       [
         { request_photos: { methods: :image, only: [:id] } },
+        { user: {only: [:username]} },
         { advisors: { only: [:username, :id] } },
-        { comments: { only: [:body, :user_id, :request_photo_id]}}
+        { comments: { methods: :user, only: [:body, :user_id, :request_photo_id]}}
       ])
-    render json: { request: request_as_json, users: users.as_json(only: [:id, :username]) }.to_json
+    render json: { request: request_as_json, users: users.as_json(only: [:id, :username]), friends: friends.as_json(only: [:id, :username]), experts: experts.as_json(only: [:id, :username]) }.to_json
   end
 end

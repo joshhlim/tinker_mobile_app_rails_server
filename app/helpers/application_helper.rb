@@ -4,4 +4,5 @@ module ApplicationHelper
   #   image_tag Faker::Avatar.image("my-own-slug", "50x50"),
   #             opts
   # end
+  include JsonWebToken
 end

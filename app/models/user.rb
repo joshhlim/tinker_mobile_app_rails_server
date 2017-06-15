@@ -8,6 +8,10 @@ class User < ApplicationRecord
   has_many :styles, through: :user_styles
   has_many :profile_photos
   has_many :comments
+  has_many :expertships
+  has_many :experts, through: :expertships, source: :expert
+  has_many :friendships
+  has_many :friends, through: :friendships, source: :friend
 
   validates :username, :presence => { message: 'username' }
   validates :email, :presence => { message: 'email' },

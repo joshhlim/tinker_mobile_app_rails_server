@@ -36,13 +36,14 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-      params.require(:comment).permit(:body, :user_id, :request_photo_id, :request_id)
+      params.require(:comment).permit(:body, :user_id, :request_id)
   end
 
   def render_request_as_json(request)
     request_as_json = request.as_json(include:
       [
         { request_photos: { methods: :image, only: [:id] } },
+        { user: {only: [:username]} },
         { advisors: { only: [:username, :id] } },
         { comments: { only: [:body, :user_id, :request_photo_id]}}
       ])
