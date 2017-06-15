@@ -1,4 +1,4 @@
-class JsonWebToken
+module JsonWebToken
   class << self
     def encode(payload, exp = 24.days.from_now)
       payload[:exp] = exp.to_i

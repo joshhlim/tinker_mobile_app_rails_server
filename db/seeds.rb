@@ -1,10 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 Style.create(name: "Plaids")
 Style.create(name: "Hippie")
 Style.create(name: "Goth")
@@ -30,13 +23,54 @@ Style.create(name: "90's")
 Style.create(name: "20's")
 Style.create(name: "60's")
 
+User.create(username: "Jackblack", email: "jackblack@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Erik", email: "e@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Matt", email: "m@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Josh", email: "j@gmail.com", password: "123123123", password_confirmation: "123123123")
 
-User.create(username: "erik", email: "e@gmail.com", password: "123123123", password_confirmation: "123123123")
-User.create(username: "matt", email: "m@gmail.com", password: "123123123", password_confirmation: "123123123")
-User.create(username: "josh", email: "j@gmail.com", password: "123123123", password_confirmation: "123123123")
-User.create(username: "nate", email: "n@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Nate", email: "n@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Mark", email: "mark@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Kevin", email: "k@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Jess", email: "jess@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Jushua", email: "jushua@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Mike", email: "mike@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Danny", email: "danny@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "John", email: "john@gmail.com", password: "123123123", password_confirmation: "123123123")
+
+User.create(username: "Quyen", email: "q@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Ian", email: "i@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Paul", email: "p@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Tallpaul", email: "t@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Mendel", email: "mendel@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Jared", email: "jared@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Ryan", email: "r@gmail.com", password: "123123123", password_confirmation: "123123123")
+User.create(username: "Lisa", email: "lisa@gmail.com", password: "123123123", password_confirmation: "123123123")
+
 
 Request.create(description: "This is for a date", user_id: "1")
 Request.create(description: "school", user_id: "2")
 Request.create(description: "plz help", user_id: "3")
 Request.create(description: "hot or not?", user_id: "4")
+
+
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Erik"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Matt"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Josh"))
+
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Nate"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Mark"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Kevin"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Jess"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Jushua"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Mike"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"Danny"))
+Expertship.create(user: User.find_by(username:"Jackblack"), expert: User.find_by(username:"John"))
+
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Quyen"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Ian"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Paul"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Tallpaul"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Mendel"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Jared"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Ryan"))
+Friendship.create(user: User.find_by(username:"Jackblack"), friend: User.find_by(username:"Lisa"))
