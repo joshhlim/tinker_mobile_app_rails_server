@@ -7,7 +7,7 @@ The photos gotten from [Tinker Frontend](https://github.com/limhjosh/tinker_mobi
 ## [View Demo and Documentation &rarr;](http://limhjosh.github.io)
 
 ### Added a Friend's List and Comments Feature
-![](https://image.ibb.co/foEJ0F/preview.jpg)
+![](preview.jpg)
 
 The server for Tinker Mobile App built with Rails. A user is authenticated with JSON Web Tokens. A user's photos are saved to Amazon S3's cloud storage using AWS API. User information is saved onto a PostgreSQL database on (Has No Web App Front End. Just a Server): http://tinkerserver.herokuapp.com
 
